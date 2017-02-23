@@ -13,6 +13,7 @@ var data = [
 ];
 
 var AirBusPlanes = React.createClass({
+    displayName: "AirBusPlanes",
     propTypes: {
         headers: React.PropTypes.arrayOf(
             React.PropTypes.string
@@ -21,22 +22,33 @@ var AirBusPlanes = React.createClass({
             React.PropTypes.any
         )
     },
-    _sort:function(ev){
-        var column = ev.target.cellIndex;
-        var data = this.state.data.slice();
-        data.sort(function(a, b){
-            return a[column] > b[column] ? 1 : -1;
-        });
-        this.setState({
-            data:data
-        });
-    },
     getInitialState: function() {
         return {
-            data: this.props.initialData
+            data: this.props.initialData,
+            sortby:null,
+            desceding:false
         };
     },
-    displayName: "AirBusPlanes",
+    _sort:function(ev){
+        var column = ev.target.cellIndex;
+        var desceding = this.state.sortby === column && !this.state.desceding;
+        var data = this.state.data.slice();
+        data.sort(function(a, b){
+            return desceding
+            ? (a[column] < b[column] ? 1 : -1)
+            : (a[column] > b[column] ? 1 : -1);
+        });
+
+
+        this.setState({
+            data:data,
+            sortby:column,
+            desceding:desceding
+        });
+
+    },
+
+
     render:function(){
         return(
             React.DOM.table({className:"table table-striped table-inverse"},
@@ -46,8 +58,11 @@ var AirBusPlanes = React.createClass({
                 },
                     React.DOM.tr(null,
                         this.props.headers.map(function(title, idx){
+                            if(this.state.sortby === idx){
+                                title += this.state.desceding ? ' \u2191 ' : ' \u2193 '
+                            }
                             return React.DOM.th({key:idx},title);
-                        })
+                        },this)
                     )
                 ),
                 React.DOM.tbody(null,
