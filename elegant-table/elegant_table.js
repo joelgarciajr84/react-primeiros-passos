@@ -4,7 +4,7 @@ var data = [
     ["A310", "2 engines, twin aisle, modified A300", "187"],
     ["A318", "2 engines, single aisle, shortened 6.17 m from A320", "107"],
     ["A319", "2 engines, single aisle, shortened 3.77 m from A320", "124"],
-    ["A320","2 engines, single aisle", "150"],
+    ["A320", "2 engines, single aisle", "150"],
     ["A321", "2 engines, single aisle, lengthened 6.94 m from A320", "185"],
     ["A330", "2 engines, twin aisle", "246-300"],
     ["A340", "4 engines, twin aisle", "239–380"],
