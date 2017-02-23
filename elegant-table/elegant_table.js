@@ -13,6 +13,24 @@ var data = [
 ];
 
 var AirBusPlanes = React.createClass({
+    propTypes: {
+        headers: React.PropTypes.arrayOf(
+            React.PropTypes.string
+        ),
+        initialData: React.PropTypes.arrayOf(
+            React.PropTypes.any
+        )
+    },
+    _sort:function(ev){
+        var column = ev.target.cellIndex;
+        var data = this.state.data.slice();
+        data.sort(function(a, b){
+            return a[column] > b[column] ? 1 : -1;
+        });
+        this.setState({
+            data:data
+        });
+    },
     getInitialState: function() {
         return {
             data: this.props.initialData
@@ -22,7 +40,10 @@ var AirBusPlanes = React.createClass({
     render:function(){
         return(
             React.DOM.table({className:"table table-striped table-inverse"},
-                React.DOM.thead({className:"thead-inverse"},
+                React.DOM.thead({
+                    className: "thead-inverse",
+                    onClick: this._sort
+                },
                     React.DOM.tr(null,
                         this.props.headers.map(function(title, idx){
                             return React.DOM.th({key:idx},title);
