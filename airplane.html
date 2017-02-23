@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Airplane</title>
+    </head>
+    <body>
+        <div id="airplane" class=""></div>
+        <script src="./build/react.js"></script>
+        <script src="./build/react-dom.js"></script>
+        <script type="text/javascript">
+
+        var a_320 = React.createClass({
+            propTypes:{
+                paxs : React.PropTypes.number.isRequired,
+                engines : React.PropTypes.string
+            },
+            getDefaultProps:function(){
+                return{
+                    engines:"IAE"
+                }
+            },
+            render: function(){
+                return React.DOM.span(null,"The AirPlane have " + this.props.paxs + " passengers and is using " + this.props.engines + " engines");
+            }
+        });
+
+
+        ReactDOM.render(
+            React.createElement(a_320, {
+                paxs:220,
+                //engines:"CFM"
+            }),
+            document.getElementById("airplane")
+        );
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>APP</title>
+    </head>
+    <body>
+        <div id="app" class=""></div>
+        <script src="./build/react.js"></script>
+        <script src="./build/react-dom.js"></script>
+        <script type="text/javascript">
+
+        ReactDOM.render(
+            React.DOM.h1(
+                {
+                    id:"my-heading",
+                    style:{
+                        background: "red"
+                    }
+                },
+                "Hello World"
+            ),
+            document.getElementById("app")
+        );
+        </script>
+
+    </body>
+</html>

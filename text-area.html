@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Text Area</title>
+    </head>
+    <body>
+        <div id="AreaCounter" class=""></div>
+
+        <script src="./build/react-with-addons.js"></script>
+        <script src="./build/react-dom.js"></script>
+        <script src="mixin.js"></script>
+        <script type="text/javascript">
+
+        var Counter = React.createClass({
+            name:'counter',
+            mixins:[React.addons.PureRenderMixin,logMixin],
+            propTypes:{
+                count :React.PropTypes.number.isRequired
+            },
+            render: function(){
+                return React.DOM.span(null, this.props.count);
+            }
+        });
+
+        var TextAreaCounter = React.createClass({
+            name:'TextAreaCounter',
+            mixins: [logMixin],
+            propTypes : {
+                text : React.PropTypes.string.isRequired
+            },
+            getDefaultProps : function() {
+                return {
+                    text: "A320"
+                }
+            },
+            getInitialState : function(){
+                return {
+                    text : this.props.text
+                }
+            },
+            _textChange : function(ev){
+                this.setState({
+                    text : ev.target.value
+                });
+            },
+
+            render : function(){
+                var counter = null;
+                if(this.state.text.length > 0){
+                    counter = React.DOM.h3(null,
+                        React.createElement(Counter,{
+                            count:this.state.text.length,
+                        })
+                    );
+                }
+                return React.DOM.div(null,
+                    React.DOM.textarea({
+                        value : this.state.text,
+                        onChange : this._textChange
+                    }),
+                    counter
+                );
+            }
+        });
+
+        var contador = ReactDOM.render(
+            React.createElement(TextAreaCounter,{
+                text : "Airbus A320",
+            }),
+            document.getElementById("AreaCounter")
+        );
+
+        </script>
+    </body>
+</html>
