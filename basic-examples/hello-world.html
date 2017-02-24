@@ -8,18 +8,23 @@
         <div id="app" class=""></div>
         <script src="../build/react.js"></script>
         <script src="../build/react-dom.js"></script>
-        <script type="text/javascript">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+
+        <script type="text/babel">
 
         ReactDOM.render(
-            React.DOM.h1(
-                {
-                    id:"my-heading",
-                    style:{
-                        background: "red"
-                    }
-                },
-                "Hello World"
-            ),
+            // React.DOM.h1(
+            //     {
+            //         id:"my-heading",
+            //         style:{
+            //             background: "red"
+            //         }
+            //     },
+            //     "Hello World"
+            // ),
+            <h1 id="my-heading">
+            <span><em>Hell</em>o</span> world!
+            </h1>,
             document.getElementById("app")
         );
         </script>
